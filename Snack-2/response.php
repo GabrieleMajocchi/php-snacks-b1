@@ -1,3 +1,15 @@
+<?php
+            $name = $_POST["name"];
+            $mail = $_POST["mail"];
+            $age = $_POST["age"];
+
+            if (strlen($name) > 3 && strpos($mail, "@") !== false && strpos($mail, ".") !== false && is_numeric($age)) {
+                $passed = "passed";
+            } else {
+                $passed = "deny";
+            }
+        ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,13 +17,9 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container <?php echo $passed; ?>">
         <?php
-            $name = $_POST["name"];
-            $mail = $_POST["mail"];
-            $age = $_POST["age"];
-
-            if (strlen($name) > 3 && strpos($mail, "@") !== false && strpos($mail, ".") !== false && is_numeric($age)) {
+            if ($passed === "passed") {
                 echo "Accesso riuscito";
             } else {
                 echo "Accesso negato";
@@ -37,6 +45,15 @@ body {
     max-width: 400px;
     padding: 20px;
     text-align: center;
+    color: white;
+}
+
+.passed{
+    background-color: green;
+}
+
+.deny{
+    background-color: red;
 }
 
 h2 {
